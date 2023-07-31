@@ -1,0 +1,20 @@
+{
+  "name": "ovim-snippets",
+  "version": "0.0.1",
+  "publisher": "Yiklek",
+  "repository": "https://github.com/Yiklek/ovim-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "cpp",
+        "path": "./snippets/cpp.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^2.20.0"
+  }
+}

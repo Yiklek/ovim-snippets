@@ -1,0 +1,13 @@
+{
+  "def print": {
+    "prefix": "defprint",
+    "body": [
+      "void print(){}",
+      "template<typename T, typename...Args>",
+      "void print(T&& t, Args&&...args){",
+      "    std::cout << t << \";\";",
+      "    print(std::forward<Args>(args)...);",
+      "}"
+    ]
+  }
+}
