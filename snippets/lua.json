@@ -1,0 +1,33 @@
+{
+  "competitest config": {
+    "prefix": "competitestc",
+    "description": "competitest directory config",
+    "body": [
+      "local file = vim.fn.expand('%:.')",
+      "local output = vim.fn.fnamemodify(file, ':h')",
+      "local build = vim.fn.fnamemodify(vim.fn.getcwd() .. '/build' .. '/' .. output, ':p')",
+      "local filename = '/$(FNOEXT).out'",
+      "local filetype = vim.api.nvim_get_option_value('filetype', { buf = 0 })",
+      "if filetype == 'java' then",
+      "  filename = '/$(FNOEXT).class'",
+      "end",
+      "local output_bin = vim.fn.fnamemodify(build .. filename, ':p')",
+      "vim.fn.mkdir(build, 'p')",
+      "local C = {",
+      "  compile_command = {",
+      "    c = { exec = 'gcc', args = { '-Wall', '$(FNAME)', '-o', output_bin } },",
+      "    cpp = { exec = 'g++', args = { '-Wall', '$(FNAME)', '-o', output_bin } },",
+      "    rust = { exec = 'rustc', args = { '$(FNAME)', '-o', output_bin } },",
+      "    java = { exec = 'javac', args = { '$(FNAME)', '-d', build } },",
+      "  },",
+      "  run_command = {",
+      "    c = { exec = output_bin },",
+      "    cpp = { exec = output_bin },",
+      "    rust = { exec = output_bin },",
+      "    java = { exec = 'java', args = { '-classpath', build, '$(FNOEXT)' } },",
+      "  },",
+      "}",
+      "return C"
+    ]
+  }
+}
