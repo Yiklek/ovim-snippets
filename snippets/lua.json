@@ -29,5 +29,20 @@
       "}",
       "return C"
     ]
+  },
+  "indent": {
+    "prefix": "indent",
+    "description": "Indentation for filetype",
+    "body": [
+      "vim.api.nvim_create_autocmd('FileType', {",
+      "  pattern = '*',",
+      "  callback = function(ev)",
+      "    if ev.match == '$1' then",
+      "      vim.bo.shiftwidth = $2",
+      "      vim.bo.tabstop = $0",
+      "    end",
+      "  end",
+      "})"
+    ]
   }
 }
